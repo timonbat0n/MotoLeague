@@ -222,37 +222,35 @@ html, body {
     background: var(--bg-card); /* Слегка подсвечиваем при наведении */
 }
 
-        .video-panel {
+       .video-panel {
+    display: block !important; /* Принудительно показываем */
     position: relative;
-    width: 100%;
-    max-width: 300px;
-    height: 160px;
-    margin-top: 30px;
+    width: 300px; /* Фиксируем ширину для теста */
+    height: 160px; /* Фиксируем высоту */
+    margin: 20px 0;
+    background: #111; /* Серый фон, чтобы видеть блок, если видео не грузится */
+    border: 2px solid var(--accent-coral);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #000;
+    z-index: 999; /* Выводим на передний план */
 }
 
 .side-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Видео заполнит весь блок без черных полос */
-    opacity: 0.8;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    opacity: 1;
 }
 
 .video-overlay {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 5px;
+    right: 5px;
     background: var(--accent-coral);
     color: #fff;
-    font-size: 0.6rem;
-    padding: 2px 8px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-size: 9px;
+    padding: 2px 6px;
+    z-index: 1000;
 }
-
 /* Эффект при наведении */
 .video-panel:hover .side-video {
     opacity: 1;
@@ -291,12 +289,12 @@ html, body {
              <a href="tel:+79262672297" style="color: var(--accent-coral); text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Contact Manager →</a>
            
             <p>Адрес офиса:<span>Москва, Лужники, Savvin River Residence</span></p>
-             <div class="video-panel">
-                <video autoplay muted loop playsinline preload="auto" class="side-video" id="mainVideo">
-                     <source src="video.mp4" type="video/mp4">
+            <div class="video-panel">
+    <video autoplay muted loop playsinline class="side-video">
+        <source src="video.mp4" type="video/mp4">
     </video>
-                <div class="video-overlay">MEDIA</div>
-             </div>
+    <div class="video-overlay">LIVE TEST</div>
+</div>
             <div class="announce-info">
                 <h3 style="text-transform: uppercase; margin-bottom: 10px;">Выставка + <span>Шоу Мото Мото</span></h3>
                 <p style="color: #888; font-size: 0.9rem;">Открытие мотосезона 2026! Каскадеры, дилеры и стант-райдинг.</p>
