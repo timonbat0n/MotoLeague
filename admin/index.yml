@@ -1,21 +1,21 @@
 backend:
   name: github
-  repo: timonbat0n/MotoLeague
-  branch: main
+  repo: timobat0n/MotoLeague # ПРОВЕРЬ ЛОГИН (должен быть как в ссылке на гитхаб)
+  branch: main # ветка, которую мы настроили в Netlify
 
-media_folder: "images" # папка, куда будут падать новые афиши
+media_folder: "images" # куда будут загружаться новые афиши
 public_folder: "/images"
 
 collections:
   - name: "home"
     label: "Главная страница"
     files:
-      - file: "data/home.json" # CMS будет сохранять данные в этот файлик
-        label: "Контент главной"
+      - file: "data/home.json"
+        label: "Контент сайта"
         name: "home_content"
         fields:
-          - { label: "Заголовок 1", name: "h1_main", widget: "string" }
-          - { label: "Заголовок 2 (обводка)", name: "h1_span", widget: "string" }
-          - { label: "Описание", name: "description", widget: "text" }
-          - { label: "Дата события", name: "event_date", widget: "string" }
+          - { label: "Верхнее слово (Moto)", name: "h1_span", widget: "string" }
+          - { label: "Нижнее слово (Fest)", name: "h1_main", widget: "string" }
+          - { label: "Описание (текст)", name: "description", widget: "text" }
+          - { label: "Дата", name: "event_date", widget: "string" }
           - { label: "Афиша", name: "afisha", widget: "image" }
