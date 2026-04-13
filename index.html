@@ -181,6 +181,93 @@
             .section { padding: 40px 5%; }
             h1 { font-size: 3rem; }
         }
+
+        
+/* Добавь/обнови эти стили */
+.btn-buy {
+    display: inline-block;
+    background: var(--accent-coral);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 40px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: 0.3s;
+    border: 1px solid var(--accent-coral);
+}
+
+.btn-buy:hover {
+    background: transparent;
+    color: var(--accent-coral);
+    box-shadow: 0 0 20px rgba(224, 83, 90, 0.4);
+}
+
+.btn-buy span {
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.btn-buy:hover span {
+    padding-left: 10px;
+}
+
+/* Обновленный заголовок места для компактности */
+.info-item span {
+    font-size: 0.95rem; /* Чуть меньше, чтобы длинное название влезло */
+}
+
+/* Эффект свечения для афиши */
+.afisha-wrapper:hover .afisha-img {
+    filter: contrast(1.2) brightness(1.1);
+    box-shadow: 0 0 30px rgba(224, 83, 90, 0.2);
+}
+.event-hero-block {
+    background: linear-gradient(145deg, rgba(10, 10, 12, 1) 0%, rgba(20, 20, 25, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+}
+
+/* Декоративный элемент угла */
+.event-hero-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 1px;
+    background: var(--accent-coral);
+    box-shadow: 0 0 20px var(--accent-coral);
+}
+
+.status-badge {
+    color: var(--accent-coral);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    display: block;
+    font-weight: 700;
+}
+
+.event-title {
+    font-size: 1.4rem; 
+    color: #fff; 
+    margin: 20px 0; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    border-left: 2px solid var(--accent-coral);
+    padding-left: 15px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
     </style>
 </head>
 <body>
@@ -201,8 +288,12 @@
         <p style="max-width: 600px; color: #aaa; margin-bottom: 30px;">
             Организация профессиональных выставок, чемпионатов по Эндуро и ATV-рейдам.
         </p>
-        <a href="tel:+79262672297" style="color: var(--accent-coral); text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Contact Manager →</a>
-    <h2 style="font-size: 1.5rem; color: var(--accent-coral); margin-bottom: 15px; text-transform: uppercase; font-weight: 400;">
+        
+        <a href="tel:+79262672297" style="color: var(--accent-coral); text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Contact Manager →</a
+    <div class="hero-container">
+        <div class="hero-content">
+            
+            <h2 style="font-size: 1.5rem; color: var(--accent-coral); margin-bottom: 15px; text-transform: uppercase; font-weight: 400;">
                 Выставка техники + шоу Мото Мото
             </h2>
             
@@ -237,8 +328,7 @@
             </div>
         </div>
     </div>
-    
-    </section>
+</section>
 
     <section id="projects" class="section">
         <h1>PRO<span>JECTS</span></h1>
@@ -311,6 +401,17 @@
                 <p>Security | Руководитель безопасности</p>
             </div>
         </div>
+
+        
+        <div class="team-card">
+            <div class="photo-container">
+                <img src="stasy.jpg" alt="Кирилл" class="member-photo">
+            </div>
+            <div class="card-info">
+                <h4>Савина Анастасия</h4>
+                <p>Enents | Руководитель отдела мероприятий</p>
+            </div>
+        </div>
     </div>
     </section>
 
@@ -362,7 +463,7 @@
 
         <div class="card-item">
             <span class="tag">Stunt Crew</span>
-            <h3>Stunt <span>Nech</span></h3>
+            <h3>Stunt <span>Tech</span></h3>
             <p>Креативная стант-группировка. Развивают культуру уличного и профессионального трюкачества.</p>
         </div>
     </div>
