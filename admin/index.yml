@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: timonbat0n/MotoLeague
+  branch: main # или master, смотря какая ветка главная
+
+media_folder: "images" # папка, куда будут падать новые афиши
+public_folder: "/images"
+
+collections:
+  - name: "home"
+    label: "Главная страница"
+    files:
+      - file: "data/home.json" # CMS будет сохранять данные в этот файлик
+        label: "Контент главной"
+        name: "home_content"
+        fields:
+          - { label: "Заголовок 1", name: "h1_main", widget: "string" }
+          - { label: "Заголовок 2 (обводка)", name: "h1_span", widget: "string" }
+          - { label: "Описание", name: "description", widget: "text" }
+          - { label: "Дата события", name: "event_date", widget: "string" }
+          - { label: "Афиша", name: "afisha", widget: "image" }
