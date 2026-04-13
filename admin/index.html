@@ -3,51 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MotoFest Admin</title>
+  <title>Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <style>
-    /* Прячем весь мусор от CMS до момента входа */
-    #nc-root {
-      display: none !important;
-    }
-
-    body {
-      background-color: #121212; /* Приятный темный фон для ожидания */
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    /* Стилизация кнопки входа, чтобы она не терялась */
-    .netlify-identity-button {
-      background-color: #ff4500 !important;
-      color: white !important;
-      padding: 15px 30px !important;
-      border-radius: 8px !important;
-      text-decoration: none !important;
-      font-weight: bold !important;
-      text-transform: uppercase !important;
-      box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4) !important;
-    }
-  </style>
 </head>
 <body>
-  <div data-netlify-identity-button>Login to MotoFest Admin</div>
+  <div data-netlify-identity-button></div>
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+    // Простой редирект при логине/логоуте
+    window.netlifyIdentity.on("login", () => document.location.reload());
+    window.netlifyIdentity.on("logout", () => document.location.reload());
+  </script>
 </body>
 </html>
