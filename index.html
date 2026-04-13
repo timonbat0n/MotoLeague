@@ -432,6 +432,17 @@ window.addEventListener('load', () => {
         video.play().catch(error => console.log("Автозапуск заблокирован, но окошко на месте"));
     }
 });
+
+    fetch('./data/home.json')
+  .then(response => response.json())
+  .then(data => {
+    // Автоматически подставляем данные из админки на сайт
+    document.querySelector('h1').innerHTML = `<span>${data.h1_span}</span><br>${data.h1_main}`;
+    document.querySelector('.announce-content p').innerText = data.description;
+    document.querySelector('.event-data span').innerText = data.event_date;
+    document.querySelector('.afisha-img').src = data.afisha;
+  })
+  .catch(err => console.log('Файл данных еще не создан или ошибка:', err));
 </script>
 
 </body>
