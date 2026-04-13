@@ -32,6 +32,27 @@
     #nc-root .nc-login-page-button {
         display: none !important;
     }
+    /* Скрываем стандартную панель навигации CMS, которая лезет поверх */
+#nc-root header {
+    display: none !important;
+}
+
+/* Скрываем контейнер, который создает эту белую полосу по центру */
+#nc-root div[class*="AppHeaderScope"] {
+    display: none !important;
+}
+
+/* Убираем стандартную обертку, которая центрирует дефолтные элементы */
+.nc-app-layout-main {
+    background: transparent !important;
+}
+
+/* Центрируем твой login-box, чтобы его ничего не перекрывало */
+.login-box {
+    position: relative;
+    z-index: 9999;
+    background: #121212; /* Добавим фон, чтобы под ним ничего не просвечивало */
+}
   </style>
 </head>
 <body>
