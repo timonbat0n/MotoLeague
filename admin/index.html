@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MotoFest Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
   <style>
     /* Прячем весь мусор от CMS до момента входа */
     #nc-root {
@@ -38,20 +39,15 @@
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Если пользователь вошел — показываем админку, если нет — только кнопку
+  if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
-      if (user) {
-        document.getElementById("nc-root").style.display = "block";
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
       }
     });
-
-    window.netlifyIdentity.on("login", () => {
-      document.location.reload(); // Перезагружаем, чтобы CMS увидела токены
-    });
-
-    window.netlifyIdentity.on("logout", () => {
-      document.location.reload();
-    });
-  </script>
+  }
+</script>
 </body>
 </html>
