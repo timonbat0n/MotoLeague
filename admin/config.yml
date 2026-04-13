@@ -2,7 +2,9 @@ backend:
   name: github
   repo: timobat0n/MotoLeague # ПРОВЕРЬ ЛОГИН (должен быть как в ссылке на гитхаб)
   branch: main # ветка, которую мы настроили в Netlify
-
+  base_url: https://api.netlify.com # ДОБАВЬ ЭТУ СТРОКУ, если её нет
+  auth_endpoint: git-gateway
+  
 media_folder: "images" # куда будут загружаться новые афиши
 public_folder: "/images"
 
