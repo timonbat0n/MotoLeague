@@ -2,29 +2,25 @@ backend:
   name: git-gateway
   branch: main
 
-display_url: https://motofest-league.netlify.app
+# Это заставит админку обновляться сразу
+local_backend: false 
+
 media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "home"
-    label: "Главная страница"
+  - name: "content"
+    label: "Контент сайта"
+    delete: false # Нельзя удалять главную
+    editor:
+      preview: false # Отключаем превью, чтобы не глючило
     files:
       - file: "data/home.json"
-        label: "Контент сайта"
-        name: "home_content"
+        label: "Главная страница"
+        name: "home_page"
         fields:
           - { label: "Верхнее слово (Moto)", name: "h1_span", widget: "string" }
           - { label: "Нижнее слово (Fest)", name: "h1_main", widget: "string" }
-          - { label: "Описание", name: "description", widget: "text" }
-          - { label: "Дата", name: "event_date", widget: "string" }
-          - { label: "Афиша", name: "afisha", widget: "image" }
-# Стили для самой админки
-slug:
-  encoding: "ascii"
-  clean_accents: true
-  sanitize_replacement: "-"
-
-# Настройки предпросмотра (чтобы не ехало)
-editor:
-  preview: false # Отключаем кривой предпросмотр справа, чтобы не бесил
+          - { label: "Описание текста", name: "description", widget: "text" }
+          - { label: "Дата проведения", name: "event_date", widget: "string" }
+          - { label: "Афиша (Загрузить фото)", name: "afisha", widget: "image" }
