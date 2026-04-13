@@ -42,10 +42,32 @@
 
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Логика перенаправления после входа
-    window.netlifyIdentity.on("login", () => {
-      document.location.href = "/admin/";
-    });
+   async function loadContent() {
+    try {
+        const response = await fetch('./data/home.json?v=' + Date.now());
+        const data = await response.json();
+
+        // Безопасная вставка заголовка
+        const titleEl = document.getElementById('main-title');
+        titleEl.innerHTML = `<span>${data.h1_span || 'Moto'}</span><br>${data.h1_main || 'Fest'}`;
+
+        // Описание с ограничением по ширине
+        const descEl = document.getElementById('main-desc');
+        descEl.innerText = data.description || 'Описание скоро появится...';
+
+        // Дата
+        document.getElementById('event_date').innerText = data.event_date || 'Дата уточняется';
+
+        // Афиша (если картинки нет, можно скрыть блок или поставить дефолт)
+        const afishaEl = document.getElementById('main-afisha');
+        if (data.afisha) {
+            afishaEl.src = data.afisha;
+            afishaEl.style.display = 'block';
+        }
+    } catch (e) {
+        console.error("Ошибка оформления:", e);
+    }
+}
   </script>
 </body>
 </html>
