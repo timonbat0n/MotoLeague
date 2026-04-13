@@ -10,7 +10,7 @@
 </head>
 <body>
   <script>
-    // Если пользователь залогинился, перенаправляем его в админку
+  document.addEventListener('DOMContentLoaded', function () {
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -20,6 +20,7 @@
         }
       });
     }
-  </script>
+  });
+</script>
 </body>
 </html>
