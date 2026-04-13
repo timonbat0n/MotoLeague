@@ -19,3 +19,12 @@ collections:
           - { label: "Описание", name: "description", widget: "text" }
           - { label: "Дата", name: "event_date", widget: "string" }
           - { label: "Афиша", name: "afisha", widget: "image" }
+# Стили для самой админки
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Настройки предпросмотра (чтобы не ехало)
+editor:
+  preview: false # Отключаем кривой предпросмотр справа, чтобы не бесил
