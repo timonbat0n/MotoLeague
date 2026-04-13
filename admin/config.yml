@@ -1,11 +1,9 @@
 backend:
-  name: github
-  repo: timobat0n/MotoLeague # ПРОВЕРЬ ЛОГИН (должен быть как в ссылке на гитхаб)
-  branch: main # ветка, которую мы настроили в Netlify
-  base_url: https://api.netlify.com # ДОБАВЬ ЭТУ СТРОКУ, если её нет
-  auth_endpoint: git-gateway
-  
-media_folder: "images" # куда будут загружаться новые афиши
+  name: git-gateway
+  branch: main
+
+display_url: https://motofest-league.netlify.app
+media_folder: "images"
 public_folder: "/images"
 
 collections:
@@ -18,6 +16,6 @@ collections:
         fields:
           - { label: "Верхнее слово (Moto)", name: "h1_span", widget: "string" }
           - { label: "Нижнее слово (Fest)", name: "h1_main", widget: "string" }
-          - { label: "Описание (текст)", name: "description", widget: "text" }
+          - { label: "Описание", name: "description", widget: "text" }
           - { label: "Дата", name: "event_date", widget: "string" }
           - { label: "Афиша", name: "afisha", widget: "image" }
