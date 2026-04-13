@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MotoFest League</title>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100;300;400;700&display=swap" rel="stylesheet">
-    <style>
+ <style>
         :root {
             --accent-coral: #e0535a;
             --bg-deep-black: #050506;
             --bg-card: #0a0a0c;
             --text-main: #ffffff;
             --text-dim: #88888e;
+            --font-main: 'Geologica', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body {
             background-color: var(--bg-deep-black);
             color: var(--text-main);
-            font-family: 'Geologica', sans-serif;
+            font-family: var(--font-main);
             line-height: 1.5;
             overflow-x: hidden;
             font-weight: 300;
         }
 
-        /* --- Навигация --- */
+        /* --- Необычная Навигация --- */
         nav {
             background: rgba(5, 5, 6, 0.9);
             backdrop-filter: blur(10px);
@@ -47,41 +48,59 @@
             font-size: 0.8rem; 
             text-transform: uppercase; 
             transition: 0.4s; 
+            cursor: pointer; 
             letter-spacing: 2px;
             position: relative;
             padding: 10px 0;
+            font-weight: 400;
         }
 
         nav a::before {
             content: '';
             position: absolute;
-            bottom: 0; left: 50%;
-            width: 0; height: 1px;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
             background-color: var(--accent-coral);
             transition: 0.4s;
             transform: translateX(-50%);
         }
 
-        nav a:hover, nav a.active { color: var(--text-main); }
-        nav a:hover::before, nav a.active::before { width: 100%; }
+        nav a:hover, nav a.active { 
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(224, 83, 90, 0.5);
+        }
+
+        nav a:hover::before, nav a.active::before { 
+            width: 100%;
+        }
 
         main { padding-top: 70px; }
 
+        /* --- Базовая изоляция секций --- */
         .section { 
             display: none; 
             padding: 60px 10%; 
             min-height: calc(100vh - 70px); 
-            animation: sectionAppear 0.6s ease-out;
+            animation: sectionAppear 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
         .section.active { display: block; }
-        #home.active { display: flex; flex-direction: column; justify-content: center; }
+        
+        /* Специфика для Главной (Home) */
+        #home.active { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 60px; /* Отступ между текстом и афишей */
+        }
 
         @keyframes sectionAppear { 
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
 
+        /* --- Минималистичная Типографика --- */
         h1 { 
             font-size: clamp(3rem, 8vw, 6rem); 
             text-transform: uppercase; 
@@ -89,17 +108,20 @@
             margin-bottom: 15px; 
             font-weight: 700;
             letter-spacing: -2px;
+            color: var(--text-main);
         }
         
         h1 span { 
             color: transparent;
             -webkit-text-stroke: 1px var(--accent-coral);
+            position: relative;
         }
 
         h1::after {
             content: '';
             display: inline-block;
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             background-color: var(--accent-coral);
             margin-left: 10px;
             box-shadow: 0 0 15px var(--accent-coral);
@@ -111,47 +133,132 @@
             margin-bottom: 40px; 
             text-transform: uppercase; 
             letter-spacing: 4px;
+            font-weight: 100;
         }
 
-        /* --- Сетка для Проектов и Партнеров --- */
-        .items-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px 40px;
-            margin-top: 50px;
+        /* --- Контент Анонса (Left Side) --- */
+        .announce-content {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .card-item {
+        .announce-info {
             border-left: 1px solid rgba(255,255,255,0.05);
             padding-left: 30px;
+            margin-bottom: 40px;
             transition: 0.4s;
         }
 
-        .card-item:hover {
+        .announce-info:hover {
             border-left-color: var(--accent-coral);
-            transform: translateX(5px);
         }
 
-        .tag {
-            font-size: 0.65rem;
-            color: var(--accent-coral);
+        .announce-info h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .announce-info h3 span { color: var(--accent-coral); }
+
+        .announce-info p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            max-width: 450px;
+            font-weight: 100;
+        }
+
+        .event-data {
+            color: var(--text-main);
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
-            display: block;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        .card-item h3 { 
-            font-size: 1.8rem; 
-            margin-bottom: 10px; 
-            text-transform: uppercase; 
+        .event-data span {
+            color: var(--accent-coral);
+            font-weight: 700;
+        }
+
+        /* --- Кнопка Билеты --- */
+        .btn-tickets {
+            display: inline-block;
+            background: var(--accent-coral);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 400;
+            transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid var(--accent-coral);
         }
-        
-        .card-item h3 span { color: var(--accent-coral); }
-        .card-item p { color: var(--text-dim); font-size: 0.95rem; max-width: 400px; }
 
-        /* --- Команда --- */
+        .btn-tickets span { transition: 0.3s; }
+
+        .btn-tickets:hover {
+            background: transparent;
+            color: var(--accent-coral);
+            box-shadow: 0 0 20px rgba(224, 83, 90, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-tickets:hover span {
+            padding-left: 10px;
+        }
+
+        /* --- Визуализация Афиши (Right Side) --- */
+        .afisha-visual {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .afisha-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Фиксированная ширина афиши */
+            transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .afisha-img {
+            width: 100%;
+            display: block;
+            border: 1px solid rgba(255,255,255,0.05);
+            filter: brightness(0.9);
+        }
+
+        .afisha-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--accent-coral);
+            z-index: -1;
+            transition: 0.4s;
+        }
+
+        .afisha-wrapper:hover {
+            transform: translate(-5px, -5px);
+        }
+
+        .afisha-wrapper:hover .afisha-border {
+            transform: translate(10px, 10px);
+            opacity: 0.5;
+        }
+
+        /* --- Команда (Без изменений) --- */
         .team-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
@@ -161,113 +268,58 @@
 
         .team-card { 
             background: var(--bg-card); 
+            transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1); 
+            overflow: hidden;
             position: relative;
+        }
+
+        .team-card:hover { 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-5px);
+        }
+        
+        .team-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--accent-coral);
+            opacity: 0;
             transition: 0.4s;
+            pointer-events: none;
+        }
+        
+        .team-card:hover::after { opacity: 1; }
+
+        .photo-container {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
         }
 
-        .photo-container { width: 100%; height: 350px; overflow: hidden; }
         .member-photo { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(100%); transition: 0.6s; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: grayscale(100%) contrast(110%);
+            transition: 0.6s; 
         }
         
-        .team-card:hover .member-photo { filter: grayscale(0%); transform: scale(1.05); }
-        .card-info { padding: 20px; }
-        .team-card h4 { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 5px; }
-        .team-card p { color: var(--accent-coral); font-size: 0.7rem; text-transform: uppercase; }
-
-        @media (max-width: 768px) {
-            .items-grid { grid-template-columns: 1fr; }
-            .section { padding: 40px 5%; }
-            h1 { font-size: 3rem; }
+        .team-card:hover .member-photo { 
+            filter: grayscale(0%) contrast(100%); 
+            transform: scale(1.03);
         }
-
         
-/* Добавь/обнови эти стили */
-.btn-buy {
-    display: inline-block;
-    background: var(--accent-coral);
-    color: #fff;
-    text-decoration: none;
-    padding: 15px 40px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    transition: 0.3s;
-    border: 1px solid var(--accent-coral);
-}
+        .card-info { padding: 20px; text-align: left; }
+        .team-card h4 { font-size: 1.3rem; text-transform: uppercase; color: var(--text-main); font-weight: 400; }
+        .team-card p { color: var(--accent-coral); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
 
-.btn-buy:hover {
-    background: transparent;
-    color: var(--accent-coral);
-    box-shadow: 0 0 20px rgba(224, 83, 90, 0.4);
-}
-
-.btn-buy span {
-    margin-left: 10px;
-    transition: 0.3s;
-}
-
-.btn-buy:hover span {
-    padding-left: 10px;
-}
-
-/* Обновленный заголовок места для компактности */
-.info-item span {
-    font-size: 0.95rem; /* Чуть меньше, чтобы длинное название влезло */
-}
-
-/* Эффект свечения для афиши */
-.afisha-wrapper:hover .afisha-img {
-    filter: contrast(1.2) brightness(1.1);
-    box-shadow: 0 0 30px rgba(224, 83, 90, 0.2);
-}
-.event-hero-block {
-    background: linear-gradient(145deg, rgba(10, 10, 12, 1) 0%, rgba(20, 20, 25, 0.5) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 50px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-}
-
-/* Декоративный элемент угла */
-.event-hero-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 1px;
-    background: var(--accent-coral);
-    box-shadow: 0 0 20px var(--accent-coral);
-}
-
-.status-badge {
-    color: var(--accent-coral);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    display: block;
-    font-weight: 700;
-}
-
-.event-title {
-    font-size: 1.4rem; 
-    color: #fff; 
-    margin: 20px 0; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    border-left: 2px solid var(--accent-coral);
-    padding-left: 15px;
-}
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    gap: 50px;
+        /* Mobile */
+        @media (max-width: 1024px) {
+            #home.active { flex-direction: column; align-items: flex-start; gap: 40px; }
+            .afisha-visual { width: 100%; }
+            .afisha-wrapper { max-width: 320px; }
+        }
     </style>
 </head>
 <body>
@@ -282,53 +334,37 @@
 </nav>
 
 <main>
-    <section id="home" class="section active">
-    <div class="event-hero-block">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="status-badge">Live Event 2026</div>
-                <h1><span>MOTOFEST</span><br>LEAGUE</h1>
-                 <p style="max-width: 600px; color: #aaa; margin-bottom: 30px;">
+    <section id="home" class="section">
+        <div class="announce-content">
+            <h1><span>MOTOFEST</span><br>LEAGUE</h1>
+            <div class="sub-header">ANO | MOSCOW | 2026</div>
+             <p style="max-width: 600px; color: #aaa; margin-bottom: 30px;">
             Организация профессиональных выставок, чемпионатов по Эндуро и ATV-рейдам.
         </p>
-                <p style="max-width: 600px; color: #aaa; margin-bottom: 30px;">
-                    Адрес офиса : Город Москва, Лужники, Savvin River Residence
         <a href="tel:+79262672297" style="color: var(--accent-coral); text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">Contact Manager →</a>
-                <h2 class="event-title">Выставка техники + шоу Мото Мото</h2>
-                <p class="hero-text">
-                    Открытие мотосезона 2026 в Москве! Вас ждет выставка официальных дилеров, 
-                    запчасти от «StuntTech garage», приглашенные гости и экстремальное шоу каскадеров.
-                </p>
+            <div class="announce-info">
+                <h3>Выставка техники + <span>Шоу Мото Мото</span></h3>
+                <p>Открытие мотосезона 2026 в Москве! Вас ждет выставка официальных дилеров, запчасти от «StuntTech garage», приглашенные гости и экстремальное шоу каскадеров.</p>
                 
-                <div class="event-mini-card">
-                    <div class="info-item">
-                        <strong>DATE</strong>
-                        <span>16 МАЯ 2026</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>TIME</strong>
-                        <span>14:00</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>PLACE</strong>
-                        <span>MASTER PANIN PARK</span>
-                    </div>
+                <div class="event-data">
+                    <p>Дата: <span>16 Мая 2026</span></p>
+                    <p>Время: <span>14:00</span></p>
+                    <p>Место: <span>Master Panin Park</span></p>
                 </div>
-
-                <a href="https://masterpaninpark.ru/festival-moto-tryukov-moto-moto/" target="_blank" class="btn-buy">
-                    Купить билеты <span>→</span>
-                </a>
             </div>
 
-            <div class="hero-visual">
-                <div class="afisha-wrapper">
-                    <img src="afis.jpg" alt="Открытие мотосезона 2026" class="afisha-img">
-                    <div class="afisha-border"></div>
-                </div>
+            <a href="https://masterpaninpark.ru/festival-moto-tryukov-moto-moto/" class="btn-tickets" target="_blank">
+                Купить Билеты <span>→</span>
+            </a>
+        </div>
+
+        <div class="afisha-visual">
+            <div class="afisha-wrapper">
+                <img src="afis.jpg" alt="Afisha Moto Moto" class="afisha-img">
+                <div class="afisha-border"></div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="projects" class="section">
         <h1>PRO<span>JECTS</span></h1>
