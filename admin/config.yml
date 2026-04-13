@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: ttps://timonbat0n.github.io/MotoLeague
+  repo: timonbat0n.github.io/MotoLeague
   branch: main
   base_url: https://api.github.com
 
