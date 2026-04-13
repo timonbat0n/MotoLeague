@@ -159,18 +159,57 @@
         .card-info { padding: 20px; }
         .card-info h4 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
         .card-info p { font-size: 0.7rem; color: var(--accent-coral); text-transform: uppercase; letter-spacing: 1px; }
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Убирает обрезание и лишний скролл */
+}
 
-        @media (max-width: 865px) {
-            #home.active { flex-direction: column; padding-top: 100px; }
-            .afisha-visual { order: -1; width: 100%; display: flex; justify-content: center; }
-        }
+.section {
+    width: 100%;
+    padding: 60px 5%; /* Уменьшаем боковые отступы, чтобы контенту было просторнее */
+    box-sizing: border-box; /* Важно: отступы не расширяют блок */
+}
+       @media (max-width: 1024px) {
+    #home.active {
+        flex-direction: column; /* Текст и афиша теперь друг под другом */
+        gap: 30px;
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    .announce-content {
+        align-items: center; /* Центрируем текст на мобилках */
+    }
+
+    .announce-info {
+        border-left: none;
+        border-top: 2px solid var(--accent-coral); /* Линия сверху вместо боковой */
+        padding: 20px 0 0 0;
+    }
+
+    .afisha-visual {
+        width: 100%;
+        max-width: 320px; /* Чтобы афиша не была слишком огромной */
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Уменьшаем шрифт заголовка, чтобы он не обрезался */
+    }
+
+    nav ul {
+        gap: 15px; /* Сжимаем меню */
+    }
+}
 
         .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Автоматически подбирает колонки */
-    gap: 1px; /* Создает тонкие линии-разделители */
-    background: rgba(255,255,255,0.05); /* Цвет линий между картами */
-    border: 1px solid rgba(255,255,255,0.05);
+    /* 250px — это минимальная ширина, при которой карточка перескочит на новую строку */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 1px;
+    width: 100%;
 }
 
 .card-item {
